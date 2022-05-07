@@ -1,0 +1,25 @@
+{% extends 'musiciansproject/templates/base.html.django' %}
+
+{% block content %}
+    <div class="grid">
+        <div class="grid-item">
+            <h2>{{ musician.name }}</h2>
+            <h3>Last updated by {{ musician.user.username }}</h3>
+            <img src="{{ MEDIA_URL }}{{ musician.image }}" alt="{{ musician.name }}">
+        </div>
+        <div class="grid-item">
+            <h3>{{ musician.name }} Details</h3>
+            {% if musician.deceased == True %}<p>(deceased)</p>{% endif %}
+            <ul>
+                <li>Genres: {{ musician.genres }}</li>
+                <li>Albums: {{ musician.albums.all|length }}</li>
+                <li>Songs: {{ musician.albums.songs.all|length }}</li>
+            </ul>
+        </div>
+        <div class="grid-item">
+            <h3>{{ musician.name }} Options</h3>
+            <a href="{% url 'edit' musician.pk %}" class="button">Edit</a>
+            <a href="{% url 'delete' musician.pk %}" class="button">Delete</a>
+        </div>
+    </div>
+{% endblock %}

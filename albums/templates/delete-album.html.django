@@ -1,0 +1,19 @@
+{% extends 'musiciansproject/templates/base.html.django' %}
+
+{% block content %}
+    <h2>Delete Album</h2>
+    {% if user.is_authenticated %}
+    <div class="warning">
+    Are you sure you want to delete {{ album.title }}?
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'albums-home' %}" class="button">Cancel</a>
+        <button type="submit">Yes, delete {{ album.title }}</button>
+    </form>
+    {% else %}
+    <p>Please log in or sign up to delete {{ album.title }}.</p>
+    <a href="{% url 'login' %}" class="button">Login</a>
+    <a href="{% url 'signup' %}" class="button">Sign Up</a>
+    {% endif %}
+{% endblock %}

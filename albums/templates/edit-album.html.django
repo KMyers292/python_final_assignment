@@ -1,0 +1,16 @@
+{% extends 'musiciansproject/templates/base.html.django' %}
+
+{% block content %}
+    <h2>Edit Album</h2>
+    {% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Edit Album</button>
+    </form>
+    {% else %}
+    <p>Please log in or sign up to edit {{ album.title }}.</p>
+    <a href="{% url 'login' %}" class="button">Login</a>
+    <a href="{% url 'signup' %}" class="button">Sign Up</a>
+    {% endif %}
+{% endblock %}

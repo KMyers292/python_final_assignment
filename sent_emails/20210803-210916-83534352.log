@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: musicman@musiciansproject.com
+Date: Wed, 04 Aug 2021 01:09:16 -0000
+Message-ID: <162803935631.13692.8046165611953638347@Cardiff-Giant.lan>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/users/reset/Mg/aqtpfg-4061808f3b385927175beceea911ccd4/
+
+Your username, in case you’ve forgotten: regularmusician
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------

@@ -1,0 +1,36 @@
+{% extends 'musiciansproject/templates/base.html.django' %}
+
+{% block content %}
+<div class="grid">
+    <div class="grid-item">
+        <h2>{{ album.title }}</h2>
+        <h3>Last updated by {{ album.user.username }}</h3>
+        <h3>Musicians:
+        {% for musician in album.musicians.all %}
+        {{ musician.name }}{% if forloop.counter < album.musicians.all|length %}, {% endif %}
+        {% comment %} |length gets the length of the collection. {% endcomment %}
+        {% endfor %}
+        </h3>
+        {% if album.cover.image %}
+        <img src="{{ MEDIA_URL }}{{ album.cover.image }}" alt="{{ album.title }}">
+        {% else %}
+        <a href="{% url 'add-cover' album.pk %}" class="button">Add Cover</a>
+        {% endif %}
+    </div>
+    <div class="grid-item">
+        <h3>Songs</h3>
+        <a href="{% url 'add-song' album.pk %}" class="button">Add Song</a>
+        {% for song in album.songs.all %}
+        <h4>{{ forloop.counter }}. {{ song.title }}</h4>
+        <audio src="{{ MEDIA_URL}}{{ song.track }}" controls>
+            <source src="{{ MEDIA_URL }}{{ song.track }}" type="audio/mpeg">
+        </audio>
+        {% endfor %}
+    </div>
+    <div class="grid-item">
+        <h3>Album Options</h3>
+        <a href="{% url 'edit-album' album.pk %}" class="button">Edit</a>
+        <a href="{% url 'delete-album' album.pk %}" class="button">Delete</a>
+    </div>
+</div>
+{% endblock %}

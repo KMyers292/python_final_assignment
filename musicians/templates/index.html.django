@@ -1,0 +1,16 @@
+{% extends 'musiciansproject/templates/base.html.django' %}
+
+{% block content %}
+    <div class="grid">
+        {% for musician in musicians %}
+        <div class="grid-item">
+            <h2><a href="{% url 'detail' musician.pk %}">{{ musician.name }}</a></h2>
+            <h3>Last updated by {{ musician.user.username }}</h3>
+            <img src="{{ MEDIA_URL }}{{ musician.image }}" alt="{{ musician.name }}">
+            <a href="{% url 'detail' musician.pk %}" class="button">Details</a>
+            <a href="{% url 'edit' musician.pk %}" class="button">Edit</a>
+            <a href="{% url 'delete' musician.pk %}" class="button">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

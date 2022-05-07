@@ -1,0 +1,16 @@
+{% extends 'musiciansproject/templates/base.html.django' %}
+
+{% block content %}
+    <h2>Add Cover</h2>
+    {% if user.is_authenticated %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Cover</button>
+    </form>
+    {% else %}
+    <p>Please log in or sign up to add a cover.</p>
+    <a href="{% url 'login' %}" class="button">Login</a>
+    <a href="{% url 'signup' %}" class="button">Sign Up</a>
+    {% endif %}
+{% endblock %}
